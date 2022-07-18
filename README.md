@@ -31,7 +31,7 @@ Bravo! You’ve successfully configured the project in Android Studio.
 * In <b> Android Studio File Explorer</b>, select <b>Project</b>
 <img width="498" alt="123636395-41e08980-d836-11eb-8643-429d6e5510d5" src="https://user-images.githubusercontent.com/86282129/123811571-cb628b00-d90c-11eb-9584-b5a8f12957dc.png">
 
-* Go to <b>VdoTok -> App -> libs</b>
+* Go to <b>JVdoTok -> App -> libs</b>
 * Add the downloaded <b>streamingSDK.aar</b> and <b>connect.aar</b> files in the libs folder
 <img width="463" alt="Screenshot 2022-03-15 at 4 45 22 PM" src="https://user-images.githubusercontent.com/91589156/158371707-79ee2a8c-d8ed-4823-9d23-9802eb10e3eb.png">
 
@@ -39,7 +39,7 @@ Bravo! You’ve successfully configured the project in Android Studio.
 
 <b>Project Signup:</b>
 * Register your account on [VdoTok](https://www.vdotok.com/) to get the <b>Project ID</b> and <b>API Service URL</b>
-* From file explorer, double-click on <b>vdotok -> app -> src -> main -> java -> com -> vdotok -> japp -> constants -> ApplicationConstants</b> replace <b>SDK_PROJECT_ID</b> with your own <b>Project Id</b> and <b>BASE_URL</b> with your own <b>API Service URL</b>
+* From file explorer, double-click on <b>JVdotok -> app -> src -> main -> java -> com -> vdotok -> japp -> constants -> ApplicationConstants</b> replace <b>SDK_PROJECT_ID</b> with your own <b>Project Id</b> and <b>BASE_URL</b> with your own <b>API Service URL</b>
 
 <b>Device Setting:</b>
 * To connect a device, enable <b>“developer mode”</b> and <b>“USB debugging”</b> by following the device-specific steps provided [here.](https://developer.android.com/studio/debug/dev-options)
