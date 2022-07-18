@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isCamEnable"
+            type="androidx.databinding.ObservableBoolean" />
+
+        <variable
+            name="isMicEnable"
+            type="androidx.databinding.ObservableBoolean" />
+
+        <variable
+            name="isSpeakerEnable"
+            type="androidx.databinding.ObservableBoolean" />
+
+
+        <variable
+            name="isCamCasting"
+            type="Boolean" />
+
+        <variable
+            name="callTitle"
+            type="String" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/lightish_grey"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/lightish_grey"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/arrow_back">
+
+            <LinearLayout
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCallType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:alpha="0.7"
+                        android:text="@{String.format(isCamCasting?@string/video_call:@string/audio_call)}"
+                        android:textColor="@color/light_black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/timer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:alpha="0.7"
+                        android:gravity="end"
+                        android:textColor="@color/light_black"
+                        android:textSize="14sp"
+                        tools:text="05:00" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_bold_700"
+                    android:text="@{callTitle}"
+                    android:textColor="@color/light_black"
+                    android:textSize="20sp"
+                    tools:text="almightyMango-almightyApple" />
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <LinearLayout
+            android:id="@+id/video_strip"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="20dp"
+            android:visibility="@{isCamCasting?View.VISIBLE:View.GONE}"
+            android:animateLayoutChanges="true"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <com.vdotok.japp.uielements.CustomCallView
+                android:id="@+id/video_strip_view1"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:tag="viewOne"
+                app:avatar="@drawable/screen_share"
+                app:borderStrokeColor="@color/lightish_grey"
+                app:borderStrokeWidth="12"
+                app:showViewBorder="true" />
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/invisibleStrip"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="20dp"
+            android:visibility="@{isCamCasting?View.VISIBLE:View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+
+        <ImageView
+            android:id="@+id/audioCallView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/blueish_white"
+            android:src="@drawable/ic_user_avatar"
+            android:visibility="@{isCamCasting?View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invisibleStrip"
+            android:contentDescription="@string/audio_call_view_description" />
+
+        <com.vdotok.japp.uielements.CustomCallView
+            android:id="@+id/video_view_full"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/blueish_white"
+            android:tag="fullView"
+            android:visibility="@{isCamCasting?View.VISIBLE:View.GONE}"
+            app:avatar="@drawable/screen_share"
+            app:borderStrokeColor="@color/lightish_grey"
+            app:borderStrokeWidth="12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invisibleStrip"
+            app:showViewBorder="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/camSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_cam_switch"
+                android:visibility="@{isCamCasting?View.VISIBLE:View.GONE}"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivSpeaker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
+                android:padding="10dp"
+                android:src="@{isSpeakerEnable?@drawable/ic_speaker_on:@drawable/ic_speaker_off}"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/camOnOff"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:src="@{isCamEnable?@drawable/ic_cam_on:@drawable/ic_cam_off}"
+                android:visibility="@{isCamCasting?View.VISIBLE:View.GONE}" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/endCall"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_end_call" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mute"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:src="@{isMicEnable?@drawable/ic_mic_on:@drawable/ic_mic_off}" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

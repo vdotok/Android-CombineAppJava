@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isVideoCall"
+            type="Boolean" />
+
+        <variable
+            name="callTitle"
+            type="String" />
+
+        <variable
+            name="isOutgoingCall"
+            type="Boolean" />
+
+        <variable
+            name="callMessage"
+            type="String" />
+
+        <variable
+            name="callMessageVisibility"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/lightish_grey"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.vdotok.japp.uielements.CustomCallView
+                android:id="@+id/ownViewView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:avatar="@drawable/screen_share"
+                app:borderStrokeColor="@color/lightish_grey"
+                app:borderStrokeWidth="12"
+                app:showViewBorder="true" />
+
+            <ImageView
+                android:id="@+id/transparentView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/grey"
+                android:contentDescription="@string/transparent_view_description" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/inter_regular_400"
+                android:text="@{isOutgoingCall?@string/calling:isVideoCall?@string/video_call:@string/audio_call}"
+                android:textSize="14sp"
+                tools:text="Audio call" />
+
+            <TextView
+                style="@style/Theme_TextView_Incoming_Call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{callTitle}"
+                tools:text="Asif Raza" />
+
+            <TextView
+                style="@style/Theme_TextView_Incoming_Call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{callMessage}"
+                android:visibility="@{callMessageVisibility?View.VISIBLE:View.GONE}"
+                tools:text="Missed Call" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:contentDescription="@string/audio_avatar_view_description"
+            android:src="@drawable/ic_user_avatar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/rejectCall"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:contentDescription="@string/reject_call_description"
+                android:src="@drawable/ic_end_call" />
+
+            <ImageView
+                android:id="@+id/acceptCall"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30dp"
+                android:contentDescription="@string/accept_call_description"
+                android:src="@{isVideoCall?@drawable/ic_accept_video_call:@drawable/ic_accept_audio_call}"
+                android:visibility="@{isOutgoingCall?View.GONE:View.VISIBLE}" />
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

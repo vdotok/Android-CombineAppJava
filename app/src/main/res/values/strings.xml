@@ -1,0 +1,130 @@
+<resources>
+    <string name="app_name">JVdoTok</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    login/signup fields hints-->
+    <string name="userNameHint">Username</string>
+    <string name="userEmailHint">Email Address</string>
+    <string name="usernameEmailHint">Username / Email</string>
+    <string name="passwordHint">Password</string>
+
+    <!--    login/signup field texts-->
+    <string name="signIn">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="sign_up_to_your_account">Sign Up to your account</string>
+
+    <!--    All User List  and Group Creation texts-->
+    <string name="hint_search_bar">Search</string>
+    <string name="add_group_chat">Add Group Chat</string>
+    <string name="contacts">Contacts</string>
+    <string name="no_user_found">No User Found !</string>
+    <string name="user_icon">users_List_icon</string>
+    <string name="check_user">check_user</string>
+    <string name="title_new_chat">New Chat</string>
+    <string name="select_contacts">Select Contacts</string>
+
+    <!--    fragment tags-->
+    <string name="tag_login_fragment">Login Fragment</string>
+    <string name="tag_signup_fragment">Signup Fragment</string>
+
+    <!-- Content Description of Images -->
+    <string name="back_arrow_description">Icon back arrow</string>
+    <string name="checkmark_description">confirmGroupSelection</string>
+    <string name="call_icon_description">AudioCall_icon</string>
+    <string name="video_call_icon_description">VideoCall_icon</string>
+    <string name="chat_icon_description">Chat_icon</string>
+    <string name="audio_call_view_description">audioCallView</string>
+    <string name="transparent_view_description">transparent view</string>
+    <string name="audio_avatar_view_description">avatar view</string>
+    <string name="reject_call_description">reject call</string>
+    <string name="accept_call_description">accept call</string>
+    <string name="img_gallery">img gallery description</string>
+    <string name="img_option_menu">img options menu descriptions</string>
+    <string name="img_send_button">send msg button description</string>
+    <string name="file_option">file option description</string>
+    <string name="camera_option">camera option description</string>
+    <string name="album_option">album option description</string>
+    <string name="audio_option">audio option description</string>
+    <string name="location_option">location option description</string>
+    <string name="contact_option">contact option description</string>
+    <string name="img_caution">img caution description</string>
+    <string name="img_close">img close description</string>
+
+
+    <!-- Create Group Dialog text -->
+    <string name="done">Done</string>
+    <string name="create_group_dialog_title">Create a group chat</string>
+    <string name="name_group_chat">Name your group chat</string>
+    <string name="group_name_hint">ex: Vdotok Team</string>
+    <string name="group_name_empty">Group name cannot be empty!</string>
+    <string name="title_new_group_chat">Create Group Chat</string>
+
+    <!-- Calling Activity text -->
+    <string name="audio_call">Audio Call</string>
+    <string name="video_call">Video Call</string>
+    <string name="calling">Calling</string>
+
+    <!-- GroupListing Text -->
+    <string name="no_conversation_yet">No Conversation Yet</string>
+    <string name="no_conversation_detail">Tap and hold on any message\nto star it, so you can easily find it later.</string>
+    <string name="refresh">refresh</string>
+    <string name="new_chat">new chat</string>
+    <string name="attachment">Attachment</string>
+    <string name="no_user_select">No User Selected</string>
+    <string name="title_chat_room">Chat Room</string>
+    <string name="un_read_messages">unread message</string>
+    <string name="offline">Offline</string>
+    <string name="online">Online</string>
+    <string name="msg_storage_permission_denied">Permission to receive files was denied by user!</string>
+
+    <!-- Chat Text -->
+    <string name="type_MessageHint">Type your message</string>
+    <string name="inProgress">In Progress!!</string>
+    <string name="video_file">Video File</string>
+    <string name="doc_file">Document File</string>
+    <string name="read">Read %s</string>
+    <string name="readOnly">Read</string>
+    <string name="attachment_failed">Attachment received failed</string>
+    <string name="audio_file">Audio File</string>
+
+    <!--    chat attachment dialog  texts-->
+    <string name="add_attachment">Add Attachment</string>
+
+    <!--    chat storage permission dialog texts-->
+    <string name="permission_dialog_header">Permission Alert !</string>
+    <string name="permission_dialog_content">File Received! Please provide storage permissions to download and view file!</string>
+    <string name="grant_permissions">Grant Permissions!</string>
+
+
+
+    <!-- Navigation View Text -->
+    <string name="chat_fragment">"chat Fragment "</string>
+    <string name="call_fragment">dial Call Fragment</string>
+    <string name="group_list_fragment">group Listing Fragment</string>
+    <string name="call_connected_fragment">call connected Fragment</string>
+    <string name="all_users_list_fragment">All user List fragment</string>
+    <string name="create_group_list_fragment">create group Fragment</string>
+
+    <!-- Dialog text -->
+    <string name="delete_group_des">Are you sure you want to delete the chatroom?</string>
+    <string name="audio_permission_denied">Please provide audio permission to make an Audio Call!</string>
+    <string name="video_permission_denied">Please provide audio and camera permissions to make an Video Call!</string>
+    <string name="broadcast_permission_denied">Please provide audio and camera permissions to initiate a Broadcast!</string>
+    <string name="read_write_permission_denied">Please provide permissions to access external storage</string>
+    <string name="delete_group">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="logging_in">Logging In…</string>
+    <string name="signing_in">Signing In…</string>
+    <string name="checking_email_available">Checking Email Availability…</string>
+    <string name="loading_groups">Loading Groups…</string>
+    <string name="loading_all_users">Fetching Users…</string>
+    <string name="creating_group">Creating Group…</string>
+    <string name="no_internet">No Internet!</string>
+    <string name="api_stopped">Api Stopped!</string>
+    <string name="api_failure">Api Request Failed!</string>
+
+    <string name="active_session_message">Tab to return to call</string>
+
+</resources>
