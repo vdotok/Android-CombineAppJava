@@ -19,7 +19,7 @@ IDE Installation & Build Guide
 * Click on <b>Clone</b> button and wait for build.gradle file. You can see the progress at the bottom of <b>Android Studio</b>
 * Go to file menu/app menu <b>Tools -> SDK Manager</b>
 * Click all checkboxes from <b>API Level 21 and onward</b>
-* Click <b>Apply</b> and download relevant packages
+* Click <b>Apply</b> and download relevant packages 
 * Let the <b>Android Studio</b> install the components
 
 Bravo! You’ve successfully configured the project in Android Studio.
