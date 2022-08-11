@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.vdotok.japp.chat.ChatActivity;
 import com.vdotok.japp.chat.dialogs.StoragePermissionDialogFragment;
 import com.vdotok.japp.chat.interfaces.OnCompleteActionListener;
 import com.vdotok.japp.chat.interfaces.OnNewMessageListener;
+import com.vdotok.japp.dashboard.DashboardActivity;
 import com.vdotok.japp.dashboard.adapter.AllGroupListAdapter;
 import com.vdotok.japp.dashboard.interfaces.OnStoragePermissionListener;
 import com.vdotok.japp.dashboard.viewmodel.DashboardViewModel;
@@ -35,6 +37,7 @@ import com.vdotok.japp.network.models.GroupModel;
 import com.vdotok.japp.network.models.LoginResponse;
 import com.vdotok.japp.network.setup.APICallObserversEnum;
 import com.vdotok.japp.network.setup.HttpResponseCodes;
+import com.vdotok.japp.splash.SplashActivity;
 import com.vdotok.japp.userlisting.UserListingActivity;
 import com.vdotok.japp.utils.ChatFileUtils;
 import com.vdotok.japp.utils.viewExtension;
@@ -81,7 +84,16 @@ public class GroupListingFragment extends BaseFragment<DashboardViewModel, Fragm
                 UserListingActivity.openUserListActivity(requireContext()));
         binding.btnRefresh.setOnClickListener(view ->
                 getAllGroups());
-        binding.customToolbar.imgDone.setOnClickListener(v -> logoutUser());
+
+        binding.customToolbar.imgDone.setOnClickListener(v -> {
+            showProgress(getString(R.string.logging_out));
+            if (subscriptionHandler != null)
+                subscriptionHandler.removeCallbacks(subscriptionRunnable);
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                hideProgress();
+                logoutUser();
+            }, 1500);
+        });
     }
 
     private void logoutUser() {
@@ -204,7 +216,7 @@ public class GroupListingFragment extends BaseFragment<DashboardViewModel, Fragm
                     getChildFragmentManager(),
                     StoragePermissionDialogFragment.TAG);
         } else {
-            saveFileMessage(msgId,headerModel,byteArray);
+            saveFileMessage(msgId, headerModel, byteArray);
         }
 
     }
@@ -275,17 +287,16 @@ public class GroupListingFragment extends BaseFragment<DashboardViewModel, Fragm
         adapter.updateData(groupDataList);
     }
 
+    private Handler subscriptionHandler = new Handler(Looper.getMainLooper());
+    private Runnable subscriptionRunnable = () -> {
+        for (GroupModel group : groupDataList) {
+            viewModel.getAppManager().getChatManager().subscribeTopic(group.getChannelKey(), group.getChannelName());
+        }
+    };
+
     private void doSubscribe() {
-        new Handler().postDelayed((Runnable) (new Runnable() {
-            public final void run() {
-                for (GroupModel group : groupDataList) {
-                    viewModel.getAppManager().getChatManager().subscribeTopic(group.getChannelKey(), group.getChannelName());
-                }
-
-            }
-        }), 2000L);
+        subscriptionHandler.postDelayed(subscriptionRunnable, 2000L);
     }
-
 
     private void setGroupMapData(ArrayList<GroupModel> groupList) {
         if (!groupList.isEmpty()) {
@@ -344,6 +355,7 @@ public class GroupListingFragment extends BaseFragment<DashboardViewModel, Fragm
         super.onPresenceReceived(who);
         saveUpdatePresenceList(who);
     }
+
     private void saveUpdatePresenceList(ArrayList<Presence> list) {
         adapter.updatePresenceData(viewModel.getAppManager().getPresenceList());
         adapter.notifyItemRangeChanged(0, groupDataList.size());

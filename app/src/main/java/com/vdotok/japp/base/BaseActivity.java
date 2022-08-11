@@ -1,5 +1,6 @@
 package com.vdotok.japp.base;
 
+import android.content.Context;
 import android.media.projection.MediaProjection;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -59,7 +61,7 @@ public abstract class BaseActivity<VM extends BaseViewModel, DB extends ViewData
     public DB binding;
     public VM viewModel;
     public Bundle bundle;
-
+    public Handler handler = new Handler();
     private ActivityBaseBinding rootBinding = null;
 
     @Inject

@@ -62,6 +62,7 @@ import com.vdotok.japp.utils.FileUtils;
 import com.vdotok.japp.utils.OnSingleClickListener;
 import com.vdotok.japp.utils.viewExtension;
 import com.vdotok.streaming.enums.MediaType;
+import com.vdotok.streaming.enums.SessionType;
 import com.vdotok.streaming.models.CallParams;
 
 import java.io.File;
@@ -518,20 +519,22 @@ public class ChatFragment extends BaseFragment<ChatViewModel, FragmentChatBindin
                     fileType
             );
         }
-        if (ChatFileUtils.INSTANCE.file.length() > FILE_SIZE_LIMIT) {
-            binding.progressBar.setVisibility(View.GONE);
-            Toast.makeText(
-                    requireContext(),
-                    "File size should be less than 6MB",
-                    Toast.LENGTH_SHORT
-            ).show();
-        } else {
-            viewModel.getAppManager().getChatManager().sendFileToGroup(
-                    viewModel.getAppManager().groupModel.getChannelKey(),
-                    viewModel.getAppManager().groupModel.getChannelName(),
-                    ChatFileUtils.INSTANCE.file,
-                    fileType
-            );
+        if (ChatFileUtils.INSTANCE.file != null) {
+            if (ChatFileUtils.INSTANCE.file.length() > FILE_SIZE_LIMIT) {
+                binding.progressBar.setVisibility(View.GONE);
+                Toast.makeText(
+                        requireContext(),
+                        "File size should be less than 6MB",
+                        Toast.LENGTH_SHORT
+                ).show();
+            } else {
+                viewModel.getAppManager().getChatManager().sendFileToGroup(
+                        viewModel.getAppManager().groupModel.getChannelKey(),
+                        viewModel.getAppManager().groupModel.getChannelName(),
+                        ChatFileUtils.INSTANCE.file,
+                        fileType
+                );
+            }
         }
 
     }

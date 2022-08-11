@@ -2,6 +2,8 @@ package com.vdotok.japp.userlisting.fragments;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,7 +102,13 @@ public class AllUserFragment extends BaseFragment<UserListingViewModel, Fragment
 
     private void setClickListeners() {
         binding.customToolbar.imgArrowBack.setOnClickListener(view -> requireActivity().onBackPressed());
-        binding.customToolbar.imgDone.setOnClickListener(v -> logoutUser());
+        binding.customToolbar.imgDone.setOnClickListener(v -> {
+            showProgress(getString(R.string.logging_out));
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                hideProgress();
+                logoutUser();
+            }, 3000);
+        });
         binding.tvAddGroupChat.setOnClickListener(view -> {
             viewExtension.INSTANCE.hideKeyboard(requireActivity());
             edtSearch.set("");

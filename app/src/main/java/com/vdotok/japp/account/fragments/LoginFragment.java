@@ -63,8 +63,10 @@ public class LoginFragment extends BaseFragment<AccountViewModel, FragmentLoginB
     private void setButtonClicks() {
         binding.btnSignIn.setOnClickListener(view -> {
             extensions.hideKeyboard(requireActivity());
+//
             loginUser();
         });
+
         binding.btnSignUp.setOnClickListener(view -> Navigation.findNavController(binding.getRoot()).navigate(R.id.action_move_to_signup_user));
     }
 

@@ -3,10 +3,14 @@ package com.vdotok.japp.calling.fragments;
 import static com.vdotok.japp.utils.StringExtension.getCallTitle;
 
 import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.view.WindowManager;
 
 
@@ -29,6 +33,7 @@ import com.vdotok.streaming.models.CallParams;
 
 import org.webrtc.VideoTrack;
 
+import java.util.Map;
 
 
 public class ConnectedCallFragment extends BaseFragment<CallingViewModel, FragmentConnectedCallBinding> {

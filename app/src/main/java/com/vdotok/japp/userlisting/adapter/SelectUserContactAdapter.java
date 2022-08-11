@@ -109,9 +109,24 @@ public class SelectUserContactAdapter extends RecyclerView.Adapter<SelectUserCon
                 if (charString.isEmpty()) {
                     dataModelList = filteredList;
                 } else {
+//                    ArrayList<UserModel> filterList = new ArrayList<>();
                     ArrayList<UserModel> filterList = (ArrayList<UserModel>) filteredList.stream()
                             .filter(s -> s.getFullName().contains(charString.toLowerCase(Locale.getDefault())))
                             .collect(Collectors.toList());
+//                    for (UserModel row : filteredList) {
+//                        if (row.contains(charString.toLowerCase())) {
+//                            filterList.add(row);
+//                        }
+//
+//                        if (row.getFullName().split(" ").fi.lowercase(Locale.getDefault()).contains(charString.lowercase(Locale.getDefault())) == true
+//                                || row.fullName?.split(" ")?.last()?.lowercase(Locale.getDefault())
+//                                ?.contains(
+//                                charString.lowercase(Locale.getDefault())
+//                        ) == true
+//                        ) {
+//                            filteredList.add(row)
+//                        }
+//                    }
                     dataModelList = filterList;
                 }
                 Filter.FilterResults filterResults = new FilterResults();

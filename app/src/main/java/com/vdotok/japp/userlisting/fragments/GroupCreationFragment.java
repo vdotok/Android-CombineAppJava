@@ -179,6 +179,8 @@ public class GroupCreationFragment extends BaseFragment<UserListingViewModel, Fr
                 UserModel item = adapter.dataModelList.get(position);
                 item.setSelected(!item.getSelected());
                 adapter.notifyItemChanged(position);
+//                val item = adapter.dataList[position];
+//                item.isSelected = item.isSelected.not();
             }
 
             @Override

@@ -73,7 +73,7 @@
                 android:textColor="@color/parrot_green"
                 android:textStyle="normal"
                 android:visibility="@{showTypingText ? View.VISIBLE : View.GONE, default = visible}"
-                tools:text="Vdotok is typing....." />
+                tools:text="Norgic is typing....." />
 
         </LinearLayout>
 

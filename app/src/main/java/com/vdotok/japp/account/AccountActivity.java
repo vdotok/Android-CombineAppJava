@@ -27,6 +27,8 @@ public class AccountActivity extends BaseActivity<AccountViewModel, ActivityAcco
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        getSupportFragmentManager().findFragmentById(R.id.accounts_nav_host_fragment);
     }
 
 

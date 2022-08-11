@@ -54,10 +54,11 @@ public abstract class BaseFragment<VM extends BaseViewModel, DB extends ViewData
 
     public VM viewModel;
     public DB binding;
-
+    public View mView;
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private AlertDialog spotsDialog;
+    //private LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
 
     private String TAG = BaseFragment.class.getCanonicalName();
@@ -111,6 +112,10 @@ public abstract class BaseFragment<VM extends BaseViewModel, DB extends ViewData
     public void onDestroy() {
         super.onDestroy();
     }
+//    @Override
+//    public LifecycleRegistry getLifecycle() {
+//        return lifecycleRegistry;
+//    }
 
     public void showProgress(String message) {
         spotsDialog = new SpotsDialog.Builder()

@@ -4,10 +4,14 @@ import com.vdotok.japp.network.models.AllGroupsResponse;
 import com.vdotok.japp.network.models.CheckUserModel;
 import com.vdotok.japp.network.models.CreateGroupModel;
 import com.vdotok.japp.network.models.CreateGroupResponse;
+import com.vdotok.japp.network.models.DeleteGroupModel;
+import com.vdotok.japp.network.models.DeleteGroupResponseModel;
 import com.vdotok.japp.network.models.GetAllUsersResponseModel;
 import com.vdotok.japp.network.models.LoginResponse;
 import com.vdotok.japp.network.models.LoginUserModel;
 import com.vdotok.japp.network.models.SignUpModel;
+import com.vdotok.japp.network.models.UpdateGroupNameModel;
+import com.vdotok.japp.network.models.UpdateGroupNameResponseModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -33,6 +37,12 @@ public interface ApiService {
 
     @POST("/API/v0/AllGroups")
     Call<AllGroupsResponse> getAllGroups(@Header("Authorization") String auth_token);
+
+    @POST("/API/v0/DeleteGroup")
+    Call<DeleteGroupResponseModel> deleteGroup(@Header("Authorization") String auth_token, @Body DeleteGroupModel model);
+
+    @POST("/API/v0/RenameGroup")
+    Call<UpdateGroupNameResponseModel> updateGroupName(@Header("Authorization") String auth_token, @Body UpdateGroupNameModel model);
 
     @POST("/API/v0/CreateGroup")
     Call<CreateGroupResponse> createGroup(@Header("Authorization") String auth_token, @Body CreateGroupModel model);

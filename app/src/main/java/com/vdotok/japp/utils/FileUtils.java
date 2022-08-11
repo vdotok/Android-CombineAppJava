@@ -24,6 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -64,6 +65,15 @@ public final class FileUtils {
         return getPathFromInputStreamUri(context, uri, type);
     }
 
+    private String getFileExtension(File file) {
+        String name = file.getName();
+        int lastIndexOf = name.lastIndexOf(".");
+        if (lastIndexOf == -1) {
+            return ""; // empty extension
+        }
+        return name.substring(lastIndexOf);
+    }
+
     /**
      * Function to get a file using URI
      * @return Returns a file
@@ -75,7 +85,7 @@ public final class FileUtils {
             try {
                 inputStream = context.getContentResolver().openInputStream(uri);
                 extFile = new File(ImageUtils.INSTANCE.copyFileToInternalStorage(context,uri,"temp"));
-                photoFile = createTemporalFileFrom(inputStream, type, extFile.getAbsolutePath());
+                photoFile = createTemporalFileFrom(inputStream, type, getFileExtension(extFile));
             } catch ( IOException ignored) {
                 ignored.printStackTrace();
             } finally {
@@ -114,19 +124,20 @@ public final class FileUtils {
         return targetFile;
     }
 
-    public static final File getImageFile(@NotNull MediaType type, @NotNull String extension) {
-        String childName = String.valueOf(System.currentTimeMillis()) + "." + extension;
+    public static File getImageFile(@NotNull MediaType type, @NotNull String extension) {
+       String childName = System.currentTimeMillis() + extension;
+//        String childName = String.valueOf(System.currentTimeMillis()) + "." + extension;
         return new File(Intrinsics.stringPlus(createAppDirectory(type.getValue()), "/"), childName);
     }
 
-    public static final String createAppDirectory(int type) {
+    public static String createAppDirectory(int type) {
         File dir ;
         StringBuilder stringBuilder;
         File filePath;
         if (type == MediaType.IMAGE.getValue()) {
             stringBuilder = new StringBuilder();
             filePath = Environment.getExternalStorageDirectory();
-            dir = new File(stringBuilder.append(filePath.getAbsolutePath()).append(IMAGES_DIRECTORY).toString());
+            dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + IMAGES_DIRECTORY);
         } else if (type == MediaType.VIDEO.getValue()) {
             stringBuilder = new StringBuilder();
             filePath = Environment.getExternalStorageDirectory();

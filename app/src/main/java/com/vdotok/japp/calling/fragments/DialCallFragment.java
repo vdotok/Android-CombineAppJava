@@ -10,6 +10,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
@@ -26,6 +27,7 @@ import com.vdotok.japp.R;
 import com.vdotok.japp.base.BaseFragment;
 import com.vdotok.japp.calling.viewmodel.CallingViewModel;
 import com.vdotok.japp.databinding.FragmentDialCallBinding;
+import com.vdotok.japp.models.ActiveSession;
 import com.vdotok.japp.models.CallNameModel;
 import com.vdotok.japp.network.setup.APICallObserversEnum;
 import com.vdotok.japp.utils.OnSingleClickListener;

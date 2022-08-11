@@ -124,6 +124,7 @@
     <string name="no_internet">No Internet!</string>
     <string name="api_stopped">Api Stopped!</string>
     <string name="api_failure">Api Request Failed!</string>
+    <string name="logging_out">Logging Out!</string>
 
     <string name="active_session_message">Tab to return to call</string>
 
