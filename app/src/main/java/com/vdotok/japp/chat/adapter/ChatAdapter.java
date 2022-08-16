@@ -26,6 +26,7 @@ import com.vdotok.japp.databinding.ItemChatTextBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ChatAdapter  extends RecyclerView.Adapter<BaseViewHolder> {
     public final List<Message> dataModelList;
@@ -94,17 +95,19 @@ public class ChatAdapter  extends RecyclerView.Adapter<BaseViewHolder> {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void updateMessageForReceipt(ReadReceiptModel model) {
-        Message item = dataModelList.stream()
+        Optional<Message> itemResult = dataModelList.stream()
                 .filter(List -> List.getId().equals(model.getMessageId()))
-                .findFirst()
-                .get();
-        int position = dataModelList.indexOf(item);
-        if (model.getReceiptType() == ReceiptType.SEEN.INSTANCE.getValue()) {
-            item.setStatus(model.getReceiptType());
-            item.setReadCount(item.getReadCount() + 1);
-            dataModelList.set(position, item);
-            chatViewModel.getAppManager().updateMessageMapData(item);
-            notifyItemChanged(position);
+                .findFirst();
+        if (itemResult.isPresent()) {
+            Message item = itemResult.get();
+            int position = dataModelList.indexOf(item);
+            if (model.getReceiptType() == ReceiptType.SEEN.INSTANCE.getValue()) {
+                item.setStatus(model.getReceiptType());
+                item.setReadCount(item.getReadCount() + 1);
+                dataModelList.set(position, item);
+                chatViewModel.getAppManager().updateMessageMapData(item);
+                notifyItemChanged(position);
+            }
         }
     }
 

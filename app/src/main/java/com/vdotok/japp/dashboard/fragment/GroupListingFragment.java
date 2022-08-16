@@ -344,8 +344,9 @@ public class GroupListingFragment extends BaseFragment<DashboardViewModel, Fragm
                 viewModel.getAppManager().mapUnreadCount.put(message.getTo(), viewModel.getAppManager().mapUnreadCount.containsKey(message.getTo()) ? viewModel.getAppManager().mapUnreadCount.get(message.getTo()) + 1 : 1);
             }
         }
-        addLastMessageGroupToTop();
-        adapter.notifyDataSetChanged();
+        if (getActivity()!=null) {
+            getActivity().runOnUiThread(this::addLastMessageGroupToTop);
+        }
         viewModel.sendAcknowledgeMsgToGroup(message);
         viewModel.getAppManager().updateMessageMapData(message);
     }
