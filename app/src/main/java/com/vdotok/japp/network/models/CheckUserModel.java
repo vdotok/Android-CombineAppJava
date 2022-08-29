@@ -19,6 +19,7 @@ public class CheckUserModel implements Serializable {
     @SerializedName("project_id")
     String projectId;
 
+
     public String getEmail() {
         return email;
     }
