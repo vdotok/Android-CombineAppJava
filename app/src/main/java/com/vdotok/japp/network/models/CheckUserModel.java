@@ -17,7 +17,7 @@ public class CheckUserModel implements Serializable {
     String email;
 
     @SerializedName("project_id")
-    String projectId;
+    String projectId= "";
 
 
     public String getEmail() {
