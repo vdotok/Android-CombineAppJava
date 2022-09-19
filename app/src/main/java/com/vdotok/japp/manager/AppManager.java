@@ -79,8 +79,9 @@ public class AppManager {
     private PersistenceManager pref;
     private Context context;
     private CallClient callClient;
+    public Boolean viewCam = true;
     private ChatManager chatManager;
-    private CallParams ActiveSession = null;
+    public CallParams ActiveSession = null;
     public boolean isDialFrag = false;
     // hold the listeners of call the classes and fragments
 

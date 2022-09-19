@@ -75,6 +75,7 @@ public class ConnectedCallFragment extends BaseFragment<CallingViewModel, Fragme
         super.onResume();
         Log.e("newtest", "onResume");
         setViews();
+
     }
 
     private void setViews() {
@@ -173,10 +174,14 @@ public class ConnectedCallFragment extends BaseFragment<CallingViewModel, Fragme
                 requireActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (viewModel.isCamEnable.get())
+                        if (viewModel.isCamEnable.get()) {
                             viewModel.pauseCam();
-                        else
+                            viewModel.getAppManager().viewCam = false;
+                        }
+                        else {
                             viewModel.resumeCam();
+                            viewModel.getAppManager().viewCam = true;
+                        }
                     }
                 });
 
