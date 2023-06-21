@@ -43,6 +43,7 @@ public class ConnectedCallFragment extends BaseFragment<CallingViewModel, Fragme
     private CustomCallView localView;
     private CustomCallView remoteView;
 
+
     @Override
     public Class<CallingViewModel> getViewModel() {
         return CallingViewModel.class;
